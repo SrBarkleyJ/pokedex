@@ -2,11 +2,10 @@
   "name": "pokedex",
   "main": "expo-router/entry",
   "version": "1.0.0",
-  "scripts": {
+"scripts": {
   "dev": "expo start",
   "web": "expo start --web",
-  "build": "next build",
-  "start": "next start"
+  "build:web": "expo export:web"
 },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
