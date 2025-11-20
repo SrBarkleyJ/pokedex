@@ -1,0 +1,62 @@
+import React from 'react';
+import { TouchableOpacity, Text, Image, StyleSheet } from "react-native";
+import { PokemonCardProps } from '../pokemon';
+
+const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon, onPress }) => {
+  const getIdFromUrl = (url: string): string => {
+    const parts = url.split('/');
+    return parts[parts.length - 2];
+  };
+
+  const pokemonId: string = getIdFromUrl(pokemon.url);
+  const imageUrl: string = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`;
+
+  return (
+    <TouchableOpacity style={styles.card} onPress={onPress}>
+      <Image 
+        source={{ uri: imageUrl }} 
+        style={styles.image}
+        resizeMode="contain"
+      />
+      <Text style={styles.id}>#{pokemonId.toString().padStart(3, '0')}</Text>
+      <Text style={styles.name}>
+        {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+      </Text>
+    </TouchableOpacity>
+  );
+};
+
+const styles = StyleSheet.create({
+  card: {
+    flex: 1,
+    margin: 8,
+    backgroundColor: "white",
+    borderRadius: 12,
+    padding: 16,
+    alignItems: "center",
+    elevation: 3,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    minHeight: 150
+  },
+  image: {
+    width: 80,
+    height: 80,
+  },
+  name: {
+    marginTop: 8,
+    fontWeight: "bold",
+    fontSize: 14,
+    color: "#333",
+    textAlign: 'center'
+  },
+  id: {
+    fontSize: 12,
+    color: "#666",
+    marginTop: 4
+  }
+});
+
+export default PokemonCard;
