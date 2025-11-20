@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { 
-  View, 
-  Text, 
-  Image, 
-  StyleSheet, 
-  ScrollView, 
-  ActivityIndicator,
-  SafeAreaView 
-} from "react-native";
-import { useLocalSearchParams, useNavigation } from 'expo-router';
 import { getPokemonById } from "@/src/types/api/pokeapi";
+import { useLocalSearchParams, useNavigation } from 'expo-router';
+import React, { useEffect, useState } from "react";
+import {
+  ActivityIndicator,
+  Image,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View
+} from "react-native";
 import { Pokemon } from '../../src/types/pokemon';
 
 export default function PokemonScreen() {
@@ -98,7 +98,7 @@ export default function PokemonScreen() {
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
-          <Image 
+          <Image
             source={{ uri: pokemon.sprites.front_default }}
             style={styles.image}
           />
@@ -107,8 +107,8 @@ export default function PokemonScreen() {
 
           <View style={styles.typesContainer}>
             {pokemon.types.map((typeInfo, index) => (
-              <View 
-                key={index} 
+              <View
+                key={index}
                 style={[styles.typeBadge, { backgroundColor: getTypeColor(typeInfo.type.name) }]}
               >
                 <Text style={styles.typeText}>{capitalize(typeInfo.type.name)}</Text>
@@ -150,7 +150,7 @@ export default function PokemonScreen() {
               <Text style={styles.statName}>{statInfo.stat.name.replace('-', ' ').toUpperCase()}</Text>
               <Text style={styles.statValue}>{statInfo.base_stat}</Text>
               <View style={styles.statBar}>
-                <View 
+                <View
                   style={[styles.statBarFill, {
                     width: `${Math.min(100, (statInfo.base_stat / 255) * 100)}%`,
                     backgroundColor: statInfo.base_stat > 50 ? '#4CAF50' : '#F44336'
@@ -167,27 +167,27 @@ export default function PokemonScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#f5f5f5' },
-  center: { flex:1, justifyContent:'center', alignItems:'center', backgroundColor:'#f5f5f5', padding:20 },
-  loadingText: { marginTop:10, fontSize:16, color:'#666' },
-  errorText: { fontSize:16, color:'#E3350D', textAlign:'center', marginBottom:10 },
-  retryText: { fontSize:14, color:'#007AFF', textDecorationLine:'underline' },
-  header: { alignItems:'center', padding:20, backgroundColor:'white', marginBottom:10 },
-  image: { width:400, height:400 },
-  name: { fontSize:28, fontWeight:'bold', color:'#333', marginTop:10 },
-  id: { fontSize:18, color:'#666', marginTop:5 },
-  typesContainer: { flexDirection:'row', marginTop:10 },
-  typeBadge: { paddingHorizontal:16, paddingVertical:6, borderRadius:20, marginHorizontal:4 },
-  typeText: { color:'white', fontWeight:'bold', fontSize:14 },
-  detailsCard: { backgroundColor:'white', padding:20, borderRadius:12, margin:12, marginTop:0 },
-  sectionTitle: { fontSize:20, fontWeight:'bold', color:'#333', marginBottom:15 },
-  detailRow: { flexDirection:'row', alignItems:'flex-start', marginBottom:15 },
-  detailLabel: { fontWeight:'bold', fontSize:16, color:'#333', width:100 },
-  detailValue: { fontSize:16, color:'#666', flex:1 },
-  abilitiesContainer: { flex:1 },
-  ability: { fontSize:16, color:'#666', marginBottom:4 },
-  statRow: { flexDirection:'row', alignItems:'center', marginBottom:12 },
-  statName: { fontSize:14, color:'#666', width:100 },
-  statValue: { fontSize:16, fontWeight:'bold', color:'#333', width:40, textAlign:'right', marginRight:10 },
-  statBar: { flex:1, height:8, backgroundColor:'#e0e0e0', borderRadius:4, overflow:'hidden' },
-  statBarFill: { height:'100%', borderRadius:4 },
+  center: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#f5f5f5', padding: 20 },
+  loadingText: { marginTop: 10, fontSize: 16, color: '#666' },
+  errorText: { fontSize: 16, color: '#E3350D', textAlign: 'center', marginBottom: 10 },
+  retryText: { fontSize: 14, color: '#007AFF', textDecorationLine: 'underline' },
+  header: { alignItems: 'center', padding: 20, backgroundColor: 'white', marginBottom: 10 },
+  image: { width: 400, height: 400 },
+  name: { fontSize: 28, fontWeight: 'bold', color: '#333', marginTop: 10 },
+  id: { fontSize: 18, color: '#666', marginTop: 5 },
+  typesContainer: { flexDirection: 'row', marginTop: 10 },
+  typeBadge: { paddingHorizontal: 16, paddingVertical: 6, borderRadius: 20, marginHorizontal: 4 },
+  typeText: { color: 'white', fontWeight: 'bold', fontSize: 14 },
+  detailsCard: { backgroundColor: 'white', padding: 20, borderRadius: 12, margin: 12, marginTop: 0 },
+  sectionTitle: { fontSize: 20, fontWeight: 'bold', color: '#333', marginBottom: 15 },
+  detailRow: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 15 },
+  detailLabel: { fontWeight: 'bold', fontSize: 16, color: '#333', width: 100 },
+  detailValue: { fontSize: 16, color: '#666', flex: 1 },
+  abilitiesContainer: { flex: 1 },
+  ability: { fontSize: 16, color: '#666', marginBottom: 4 },
+  statRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 12 },
+  statName: { fontSize: 14, color: '#666', width: 100 },
+  statValue: { fontSize: 16, fontWeight: 'bold', color: '#333', width: 40, textAlign: 'right', marginRight: 10 },
+  statBar: { flex: 1, height: 8, backgroundColor: '#e0e0e0', borderRadius: 4, overflow: 'hidden' },
+  statBarFill: { height: '100%', borderRadius: 4 },
 });

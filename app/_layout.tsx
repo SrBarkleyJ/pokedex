@@ -1,5 +1,5 @@
 import { Stack } from 'expo-router';
-import { StatusBar } from 'react-native';
+import { StatusBar, Text, TouchableOpacity, Linking } from 'react-native';
 
 export default function RootLayout() {
   return (
@@ -17,11 +17,34 @@ export default function RootLayout() {
         }}
       >
         <Stack.Screen 
-          name="index" 
-          options={{ 
-            title: "Pokédex"
-          }} 
+          name="index"
+          options={{
+            headerTitle: () => (
+              <Text style={{ 
+                color: '#fff', 
+                fontSize: 26, 
+                fontWeight: 'bold' 
+              }}>
+                Pokédex
+              </Text>
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => Linking.openURL("https://github.com/SrBarkleyJ")}
+                style={{ marginRight: 15 }}
+              >
+                <Text style={{ 
+                  color: '#fff', 
+                  fontSize: 18, 
+                  fontWeight: 'bold' 
+                }}>
+                  Mi perfil de GitHub
+                </Text>
+              </TouchableOpacity>
+            ),
+          }}
         />
+
         <Stack.Screen 
           name="pokemon/[id]" 
           options={{ 
