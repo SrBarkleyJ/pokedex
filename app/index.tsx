@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import { 
   View, 
   FlatList, 
@@ -19,7 +20,8 @@ export default function HomeScreen() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [refreshing, setRefreshing] = useState<boolean>(false);
-
+  const [generation, setGeneration] = useState(1);
+  
   useEffect(() => {
     loadPokemons();
   }, []);
@@ -125,6 +127,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f5f5f5',
     padding: 20
+    
   },
   loadingText: {
     marginTop: 10,

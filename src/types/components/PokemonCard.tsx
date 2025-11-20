@@ -39,21 +39,25 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    minHeight: 150
+    minHeight: 350,
+    height: '90%',
+    width: '90%',
+    justifyContent: 'center',
+   
   },
   image: {
-    width: 80,
-    height: 80,
+    width: '80%',
+    height: '80%',
   },
   name: {
     marginTop: 8,
     fontWeight: "bold",
-    fontSize: 14,
+    fontSize: 18,
     color: "#333",
     textAlign: 'center'
   },
   id: {
-    fontSize: 12,
+    fontSize: 18,
     color: "#666",
     marginTop: 4
   }
