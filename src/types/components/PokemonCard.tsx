@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, Image, StyleSheet } from "react-native";
+import { Image, Platform, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { PokemonCardProps } from '../pokemon';
 
 const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon, onPress }) => {
@@ -13,8 +13,8 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon, onPress }) => {
 
   return (
     <TouchableOpacity style={styles.card} onPress={onPress}>
-      <Image 
-        source={{ uri: imageUrl }} 
+      <Image
+        source={{ uri: imageUrl }}
         style={styles.image}
         resizeMode="contain"
       />
@@ -34,16 +34,24 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 16,
     alignItems: "center",
-    elevation: 3,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
     minHeight: 350,
     height: '90%',
     width: '90%',
     justifyContent: 'center',
-   
+    ...Platform.select({
+      ios: {
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+      },
+      android: {
+        elevation: 3,
+      },
+      web: {
+        boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+      }
+    }),
   },
   image: {
     width: '80%',

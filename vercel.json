@@ -3,7 +3,6 @@
     "outputDirectory": "dist",
     "devCommand": "expo start --web",
     "installCommand": "npm install",
-    "framework": "vite",
     "rewrites": [
         {
             "source": "/(.*)",

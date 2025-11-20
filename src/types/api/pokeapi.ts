@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { PokemonListResponse, Pokemon } from '../pokemon';
+import { GenerationResponse, Pokemon, PokemonListItem, PokemonListResponse } from '../pokemon';
 
 const pokeApi = axios.create({
   baseURL: 'https://pokeapi.co/api/v2/',
@@ -14,6 +14,17 @@ export const getPokemons = async (limit: number = 20, offset: number = 0): Promi
   } catch (error) {
     console.error('Error fetching pokémons:', error);
     throw new Error('No se pudieron cargar los pokémons. Verifica tu conexión.');
+  }
+};
+
+export const getPokemonsByGeneration = async (id: number): Promise<PokemonListItem[]> => {
+  try {
+    console.log(`Fetching pokémons for generation ${id}`);
+    const response = await pokeApi.get<GenerationResponse>(`generation/${id}`);
+    return response.data.pokemon_species;
+  } catch (error) {
+    console.error(`Error fetching generation ${id}:`, error);
+    throw new Error(`No se pudieron cargar los pokémons de la generación ${id}`);
   }
 };
 

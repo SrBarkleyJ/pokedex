@@ -10,6 +10,12 @@ export interface PokemonListResponse {
   results: PokemonListItem[];
 }
 
+export interface GenerationResponse {
+  id: number;
+  name: string;
+  pokemon_species: PokemonListItem[];
+}
+
 export interface PokemonType {
   slot: number;
   type: {
