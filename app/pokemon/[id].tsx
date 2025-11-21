@@ -1,5 +1,6 @@
 import { getPokemonById } from "@/src/types/api/pokeapi";
-import { useLocalSearchParams, useNavigation } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+import { useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
 import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -8,6 +9,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View
 } from "react-native";
 import { Pokemon } from '../../src/types/pokemon';
@@ -15,6 +17,8 @@ import { Pokemon } from '../../src/types/pokemon';
 export default function PokemonScreen() {
   const params = useLocalSearchParams();
   const navigation = useNavigation();
+
+  const router = useRouter();
 
   // Recibir parámetros correctamente y parsearlos a número
   const idParam = Array.isArray(params.id) ? params.id[0] : params.id;
@@ -35,11 +39,23 @@ export default function PokemonScreen() {
   }, [id]);
 
   useEffect(() => {
+    const backButton = () => (
+      <TouchableOpacity onPress={() => router.back()} style={{ marginLeft: 0, marginRight: 10 }}>
+        <Ionicons name="arrow-back" size={24} color="white" />
+      </TouchableOpacity>
+    );
+
+    const options: any = {
+      headerLeft: backButton,
+    };
+
     if (name) {
-      navigation.setOptions({ title: capitalize(name) });
+      options.title = capitalize(name);
     } else if (pokemon) {
-      navigation.setOptions({ title: capitalize(pokemon.name) });
+      options.title = capitalize(pokemon.name);
     }
+
+    navigation.setOptions(options);
   }, [name, pokemon]);
 
   const loadPokemon = async (): Promise<void> => {
@@ -98,10 +114,24 @@ export default function PokemonScreen() {
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
-          <Image
-            source={{ uri: pokemon.sprites.front_default }}
-            style={styles.image}
-          />
+          <View style={styles.spritesContainer}>
+            <View style={styles.spriteWrapper}>
+              <Text style={styles.spriteLabel}>Normal</Text>
+              <Image
+                source={{ uri: pokemon.sprites.front_default }}
+                style={styles.image}
+                resizeMode="contain"
+              />
+            </View>
+            <View style={styles.spriteWrapper}>
+              <Text style={styles.spriteLabel}>Shiny</Text>
+              <Image
+                source={{ uri: pokemon.sprites.front_shiny }}
+                style={styles.image}
+                resizeMode="contain"
+              />
+            </View>
+          </View>
           <Text style={styles.name}>{capitalize(pokemon.name)}</Text>
           <Text style={styles.id}>#{pokemon.id.toString().padStart(3, '0')}</Text>
 
@@ -172,7 +202,10 @@ const styles = StyleSheet.create({
   errorText: { fontSize: 16, color: '#E3350D', textAlign: 'center', marginBottom: 10 },
   retryText: { fontSize: 14, color: '#007AFF', textDecorationLine: 'underline' },
   header: { alignItems: 'center', padding: 20, backgroundColor: 'white', marginBottom: 10 },
-  image: { width: 400, height: 400 },
+  spritesContainer: { flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap', width: '100%' },
+  spriteWrapper: { alignItems: 'center', justifyContent: 'center', margin: 10 },
+  spriteLabel: { fontSize: 18, color: '#666', marginBottom: 5 },
+  image: { width: 350, height: 350 },
   name: { fontSize: 28, fontWeight: 'bold', color: '#333', marginTop: 10 },
   id: { fontSize: 18, color: '#666', marginTop: 5 },
   typesContainer: { flexDirection: 'row', marginTop: 10 },
@@ -182,12 +215,12 @@ const styles = StyleSheet.create({
   sectionTitle: { fontSize: 20, fontWeight: 'bold', color: '#333', marginBottom: 15 },
   detailRow: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 15 },
   detailLabel: { fontWeight: 'bold', fontSize: 16, color: '#333', width: 100 },
-  detailValue: { fontSize: 16, color: '#666', flex: 1 },
+  detailValue: { fontSize: 18, color: '#666', flex: 1 },
   abilitiesContainer: { flex: 1 },
-  ability: { fontSize: 16, color: '#666', marginBottom: 4 },
+  ability: { fontSize: 18, color: '#666', marginBottom: 4 },
   statRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 12 },
-  statName: { fontSize: 14, color: '#666', width: 100 },
-  statValue: { fontSize: 16, fontWeight: 'bold', color: '#333', width: 40, textAlign: 'right', marginRight: 10 },
-  statBar: { flex: 1, height: 8, backgroundColor: '#e0e0e0', borderRadius: 4, overflow: 'hidden' },
+  statName: { fontSize: 18, color: '#666', width: 100 },
+  statValue: { fontSize: 18, fontWeight: 'bold', color: '#333', width: 40, textAlign: 'right', marginRight: 10 },
+  statBar: { flex: 1, height: 10, backgroundColor: '#e0e0e0', borderRadius: 4, overflow: 'hidden' },
   statBarFill: { height: '100%', borderRadius: 4 },
 });

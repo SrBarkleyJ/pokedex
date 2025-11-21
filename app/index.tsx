@@ -45,6 +45,14 @@ export default function HomeScreen() {
       }
 
       console.log(`Loaded ${data.length} pokémons for Gen ${selectedGeneration}`);
+
+      // Sort pokemons by ID
+      data.sort((a, b) => {
+        const idA = parseInt(a.url.split('/').slice(-2, -1)[0]);
+        const idB = parseInt(b.url.split('/').slice(-2, -1)[0]);
+        return idA - idB;
+      });
+
       setPokemons(data);
     } catch (err: any) {
       setError(err.message);
