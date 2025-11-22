@@ -9,7 +9,6 @@ const regions = [
     { name: 'Sinnoh', id: 'sinnoh' },
     { name: 'Unova', id: 'unova' },
     { name: 'Kalos', id: 'kalos' },
-    { name: 'Alola', id: 'alola' },
     { name: 'Galar', id: 'galar' },
     { name: 'Paldea', id: 'paldea' },
 ];
