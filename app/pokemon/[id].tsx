@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
+import abilityTranslations from '../../src/data/abilities_es.json';
 import { Pokemon } from '../../src/types/pokemon';
 
 export default function PokemonScreen() {
@@ -156,19 +157,18 @@ export default function PokemonScreen() {
           </View>
 
           <View style={styles.detailRow}>
-            <Text style={styles.detailLabel}>Peso:</Text>
-            <Text style={styles.detailValue}>{pokemon.weight / 10} kg</Text>
-          </View>
-
-          <View style={styles.detailRow}>
             <Text style={styles.detailLabel}>Habilidades:</Text>
             <View style={styles.abilitiesContainer}>
-              {pokemon.abilities.map((abilityInfo, index) => (
-                <Text key={index} style={styles.ability}>
-                  {capitalize(abilityInfo.ability.name)}
-                  {abilityInfo.is_hidden ? " (Oculta)" : ""}
-                </Text>
-              ))}
+              {pokemon.abilities.map((abilityInfo, index) => {
+                const abilityName = abilityInfo.ability.name;
+                const translatedName = (abilityTranslations as any)[abilityName] || capitalize(abilityName);
+                return (
+                  <Text key={index} style={styles.ability}>
+                    {translatedName}
+                    {abilityInfo.is_hidden ? " (Oculta)" : ""}
+                  </Text>
+                );
+              })}
             </View>
           </View>
         </View>
@@ -190,8 +190,8 @@ export default function PokemonScreen() {
             </View>
           ))}
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </ScrollView >
+    </SafeAreaView >
   );
 }
 
