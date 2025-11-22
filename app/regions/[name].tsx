@@ -36,7 +36,7 @@ const regionData: { [key: string]: { name: string; badges: string[]; bulbapedia:
     },
     galar: {
         name: 'Galar',
-        badges: ['Grass', 'Water', 'Fire', 'Fighting', 'Ghost', 'Fairy', 'Rock', 'Ice', 'Dark', 'Dragon'],
+        badges: ['Grass', 'Water', 'Fire', 'Fighting', 'Ghost', 'Fairy', 'Rock', 'Ice', 'Dark', 'Drake'],
         bulbapedia: 'https://bulbapedia.bulbagarden.net/wiki/Badge#Galar_League',
     },
     paldea: {
