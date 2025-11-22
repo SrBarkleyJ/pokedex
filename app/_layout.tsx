@@ -1,6 +1,7 @@
+import WebNavBar from '@/src/components/WebNavBar';
 import { Ionicons } from '@expo/vector-icons';
 import { Stack } from 'expo-router';
-import { Linking, Platform, StatusBar, Text, TouchableOpacity } from 'react-native';
+import { Linking, Platform, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 // Conditionally import Drawer only on native platforms
@@ -28,18 +29,21 @@ export default function RootLayout() {
             options={{
               title: "Pokédex",
               headerRight: () => (
-                <TouchableOpacity
-                  onPress={() => Linking.openURL("https://github.com/SrBarkleyJ")}
-                  style={{ marginRight: 15 }}
-                >
-                  <Text style={{
-                    color: '#fff',
-                    fontSize: 18,
-                    fontWeight: 'bold'
-                  }}>
-                    GitHub
-                  </Text>
-                </TouchableOpacity>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 15 }}>
+                  <WebNavBar />
+                  <TouchableOpacity
+                    onPress={() => Linking.openURL("https://github.com/SrBarkleyJ")}
+                    style={{ marginRight: 15 }}
+                  >
+                    <Text style={{
+                      color: '#fff',
+                      fontSize: 18,
+                      fontWeight: 'bold'
+                    }}>
+                      GitHub
+                    </Text>
+                  </TouchableOpacity>
+                </View>
               ),
             }}
           />
@@ -47,18 +51,37 @@ export default function RootLayout() {
             name="regions/index"
             options={{
               title: "Regiones",
+              headerRight: () => (
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 15 }}>
+                  <WebNavBar />
+                  <TouchableOpacity
+                    onPress={() => Linking.openURL("https://github.com/SrBarkleyJ")}
+                    style={{ marginRight: 15 }}
+                  >
+                    <Text style={{
+                      color: '#fff',
+                      fontSize: 18,
+                      fontWeight: 'bold'
+                    }}>
+                      GitHub
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              ),
             }}
           />
           <Stack.Screen
             name="pokemon/[id]"
             options={{
-              title: "Detalles Pokémon"
+              title: "Detalles Pokémon",
+              headerRight: () => <WebNavBar />,
             }}
           />
           <Stack.Screen
             name="regions/[name]"
             options={{
-              title: "Detalles Región"
+              title: "Detalles Región",
+              headerRight: () => <WebNavBar />,
             }}
           />
         </Stack>
