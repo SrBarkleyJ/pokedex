@@ -9,13 +9,15 @@ export default function WebNavBar() {
     const navItems = [
         { label: 'Pokédex', icon: 'list', path: '/' },
         { label: 'Regiones', icon: 'map', path: '/regions' },
+        { label: 'Tipos', icon: 'calculator', path: '/type-calculator' },
     ];
 
     return (
         <View style={styles.container}>
             {navItems.map((item) => {
                 const isActive = pathname === item.path ||
-                    (item.path === '/regions' && pathname.startsWith('/regions'));
+                    (item.path === '/regions' && pathname.startsWith('/regions')) ||
+                    (item.path === '/type-calculator' && pathname.startsWith('/type-calculator'));
 
                 return (
                     <TouchableOpacity

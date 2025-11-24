@@ -50,24 +50,15 @@ export default function RootLayout() {
           <Stack.Screen
             name="regions/index"
             options={{
-              title: "Regiones",
-              headerRight: () => (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 15 }}>
-                  <WebNavBar />
-                  <TouchableOpacity
-                    onPress={() => Linking.openURL("https://github.com/SrBarkleyJ")}
-                    style={{ marginRight: 15 }}
-                  >
-                    <Text style={{
-                      color: '#fff',
-                      fontSize: 18,
-                      fontWeight: 'bold'
-                    }}>
-                      GitHub
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              ),
+              title: "Regiones Pokémon",
+              headerRight: () => <WebNavBar />,
+            }}
+          />
+          <Stack.Screen
+            name="type-calculator/index"
+            options={{
+              title: "Calculadora de Tipos",
+              headerRight: () => <WebNavBar />,
             }}
           />
           <Stack.Screen
@@ -80,7 +71,7 @@ export default function RootLayout() {
           <Stack.Screen
             name="regions/[name]"
             options={{
-              title: "Detalles Región",
+              title: "Región",
               headerRight: () => <WebNavBar />,
             }}
           />
@@ -118,13 +109,7 @@ export default function RootLayout() {
                 onPress={() => Linking.openURL("https://github.com/SrBarkleyJ")}
                 style={{ marginRight: 15 }}
               >
-                <Text style={{
-                  color: '#fff',
-                  fontSize: 18,
-                  fontWeight: 'bold'
-                }}>
-                  GitHub
-                </Text>
+                <Ionicons name="logo-github" size={24} color="#fff" />
               </TouchableOpacity>
             ),
           }}
@@ -133,9 +118,35 @@ export default function RootLayout() {
           name="regions/index"
           options={{
             drawerLabel: "Regiones",
-            title: "Regiones",
+            title: "Regiones Pokémon",
             drawerIcon: ({ color, size }: { color: string; size: number }) => (
               <Ionicons name="map" size={size} color={color} />
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => Linking.openURL("https://github.com/SrBarkleyJ")}
+                style={{ marginRight: 15 }}
+              >
+                <Ionicons name="logo-github" size={24} color="#fff" />
+              </TouchableOpacity>
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="type-calculator/index"
+          options={{
+            drawerLabel: "Calculadora de Tipos",
+            title: "Calculadora de Tipos",
+            drawerIcon: ({ color, size }: { color: string; size: number }) => (
+              <Ionicons name="calculator" size={size} color={color} />
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => Linking.openURL("https://github.com/SrBarkleyJ")}
+                style={{ marginRight: 15 }}
+              >
+                <Ionicons name="logo-github" size={24} color="#fff" />
+              </TouchableOpacity>
             ),
           }}
         />
