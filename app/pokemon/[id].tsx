@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
+import { PokemonCryButton } from '../../src/components/PokemonCryButton';
 import abilityTranslations from '../../src/data/abilities_es.json';
 import { Pokemon } from '../../src/types/pokemon';
 
@@ -136,6 +137,10 @@ export default function PokemonScreen() {
           <Text style={styles.name}>{capitalize(pokemon.name)}</Text>
           <Text style={styles.id}>#{pokemon.id.toString().padStart(3, '0')}</Text>
 
+          <View style={styles.cryButtonContainer}>
+            <PokemonCryButton pokemonId={pokemon.id} pokemonName={pokemon.name} />
+          </View>
+
           <View style={styles.typesContainer}>
             {pokemon.types.map((typeInfo, index) => (
               <View
@@ -208,6 +213,7 @@ const styles = StyleSheet.create({
   image: { width: 350, height: 350 },
   name: { fontSize: 28, fontWeight: 'bold', color: '#333', marginTop: 10 },
   id: { fontSize: 18, color: '#666', marginTop: 5 },
+  cryButtonContainer: { marginTop: 15, marginBottom: 5 },
   typesContainer: { flexDirection: 'row', marginTop: 10 },
   typeBadge: { paddingHorizontal: 16, paddingVertical: 6, borderRadius: 20, marginHorizontal: 4 },
   typeText: { color: 'white', fontWeight: 'bold', fontSize: 14 },
