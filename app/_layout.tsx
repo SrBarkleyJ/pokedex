@@ -1,4 +1,4 @@
-import WebNavBar from '@/src/components/WebNavBar';
+import WebNavBar from '@/app/components/WebNavBar';
 import { Ionicons } from '@expo/vector-icons';
 import { Stack } from 'expo-router';
 import { Linking, Platform, StatusBar, Text, TouchableOpacity, View } from 'react-native';
@@ -75,6 +75,13 @@ export default function RootLayout() {
               headerRight: () => <WebNavBar />,
             }}
           />
+          <Stack.Screen
+            name="guess-pokemon/index"
+            options={{
+              title: "¿Quién es ese Pokémon?",
+              headerRight: () => <WebNavBar />,
+            }}
+          />
         </Stack>
       </GestureHandlerRootView>
     );
@@ -139,6 +146,24 @@ export default function RootLayout() {
             title: "Calculadora de Tipos",
             drawerIcon: ({ color, size }: { color: string; size: number }) => (
               <Ionicons name="calculator" size={size} color={color} />
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => Linking.openURL("https://github.com/SrBarkleyJ")}
+                style={{ marginRight: 15 }}
+              >
+                <Ionicons name="logo-github" size={24} color="#fff" />
+              </TouchableOpacity>
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="guess-pokemon/index"
+          options={{
+            drawerLabel: "¿Quién es ese Pokémon?",
+            title: "¿Quién es ese Pokémon?",
+            drawerIcon: ({ color, size }: { color: string; size: number }) => (
+              <Ionicons name="game-controller" size={size} color={color} />
             ),
             headerRight: () => (
               <TouchableOpacity

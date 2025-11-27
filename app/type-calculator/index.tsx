@@ -1,4 +1,4 @@
-import TypeSelector from '@/src/components/TypeSelector';
+import TypeSelector from '@/app/components/TypeSelector';
 import { calculateTypeEffectiveness, getEffectivenessColor, getEffectivenessDescription } from '@/src/types/api/typeApi';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';

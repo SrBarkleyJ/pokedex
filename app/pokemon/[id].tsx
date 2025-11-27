@@ -1,3 +1,4 @@
+import { PokemonCryButton } from '@/app/components/PokemonCryButton';
 import { getPokemonById } from "@/src/types/api/pokeapi";
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
@@ -12,7 +13,6 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
-import { PokemonCryButton } from '../../src/components/PokemonCryButton';
 import abilityTranslations from '../../src/data/abilities_es.json';
 import { Pokemon } from '../../src/types/pokemon';
 
